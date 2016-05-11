@@ -1,3 +1,16 @@
+/* 
+    Fast/simple selector
+    $('#id') to get by id
+    $('.class') to get by class
+    $('name') to get by name
+    
+    Separate queries by spaces to get children, e.g
+    $('#id .class') to get all elements with class 'class' in element with id 'id'
+
+    Returns array when there are multiple or no results (empty array), or single element
+    if querying by id
+*/
+
 function $ (selector, context) {
     context = context || document
     
@@ -17,6 +30,7 @@ function $ (selector, context) {
         result = context.getElementsByTagName(query).toArray()
         iterable = true;
     }
+    if (result === null) return []
 
     if (selectors.length > 1) {
         result = iterable ? result : [result] 
@@ -25,6 +39,8 @@ function $ (selector, context) {
             return results.concat($(newSelector, context))
         }, [])
     }
-    if (result.length === 1) result = result[0]
+
+    // if we queried for a single element by id
+    if (result.length === 1 && queryType === '#') result = result[0]
     return result
 }
