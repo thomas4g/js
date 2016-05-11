@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SlimJS Tests</title>
+    </head>
+    <body>
+        <div id='test' class='top'>
+            <span class='whatever'></span>
+            <span class='whatever'></span>
+            <span class='whatever'></span>
+            <span class='whatever'></span>
+        </div>
+        <span class='whatever'></span>
+        <span class='whatever'></span>
+        <span class='whatever'></span>
+        <span class='whatever'></span>
+        <span class='whatever'></span>
+
+        <div class='top'>
+            <span class='whatever'></span>
+            <span class='whatever'></span>
+            <span class='whatever'></span>
+            <span class='whatever'></span>
+        </div>
+
+
+
+        <script src='html_protos.js'></script>
+        <script src='js.js'></script>
+        <script>
+            var x = $('test')
+            console.log(x)
+            
+            console.log($('.top .whatever'))
+        </script>
+    </body>
+</html>
