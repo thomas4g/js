@@ -1,9 +1,9 @@
-/* 
+/*
     Fast/simple selector
     $('#id') to get by id
     $('.class') to get by class
     $('name') to get by name
-    
+
     Separate queries by spaces to get children, e.g
     $('#id .class') to get all elements with class 'class' in element with id 'id'
 
@@ -13,10 +13,10 @@
 
 function $ (selector, context) {
     context = context || document
-    
-    var selectors = selector.split(' ')    
-    
-    var selector = selectors[0] 
+
+    var selectors = selector.split(' ')
+
+    var selector = selectors[0]
     var queryType = selector[0]
     var query = selector.substring(1)
     var result;
@@ -33,7 +33,7 @@ function $ (selector, context) {
     if (result === null) return []
 
     if (selectors.length > 1) {
-        result = iterable ? result : [result] 
+        result = iterable ? result : [result]
         var newSelector = selectors.slice(1).join(' ')
         result = result.reduce(function (results, context) {
             return results.concat($(newSelector, context))
