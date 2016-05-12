@@ -17,23 +17,30 @@
         <span class='whatever'></span>
 
         <div class='top'>
+            <span class='whatever'>
+                <a href='#'>Nested Link</a>
+                <a href='#'>Nested Link</a>
+            </span>
             <span class='whatever'></span>
             <span class='whatever'></span>
-            <span class='whatever'></span>
-            <span class='whatever'></span>
+            <span class='whatever'>
+                <a href='#'>Nested Link</a>
+            </span>
         </div>
 
-        <div class='new'></div>
-
+        <div class='new'>
+            <a href='#'>Nested Link</a>
+        </div>
 
 
         <script src='html_protos.js'></script>
         <script src='js.js'></script>
         <script>
-            var x = $('test')
-            console.log(x)
+            console.log($$('#test'))
+            console.log($$('a'))
 
-            console.log($('.top .whatever'))
+            console.log($$('.top .whatever'))
+            console.log($$('.top .whatever a'))
         </script>
     </body>
 </html>

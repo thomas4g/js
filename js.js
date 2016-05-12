@@ -11,14 +11,14 @@
     if querying by id
 */
 
-function $ (selector, context) {
+function $$ (selector, context) {
     context = context || document
 
-    var selectors = selector.split(' ')
+    var selectors = selector.split(' ', 1)
 
     var selector = selectors[0]
     var queryType = selector[0]
-    var query = selector.substring(1)
+    var query = selector.substr(1)
     var result;
     var iterable = false;
     if (queryType === '#') {
@@ -27,17 +27,19 @@ function $ (selector, context) {
         result = context.getElementsByClassName(query).toArray()
         iterable = true;
     } else {
-        result = context.getElementsByTagName(query).toArray()
+        result = context.getElementsByTagName(selector).toArray()
         iterable = true;
     }
     if (result === null) return []
 
     if (selectors.length > 1) {
         result = iterable ? result : [result]
-        var newSelector = selectors.slice(1).join(' ')
-        result = result.reduce(function (results, context) {
-            return results.concat($(newSelector, context))
-        }, [])
+        var newSelector = selectors[1]
+        var results = []
+        result.map(function (context) {
+            results.concat($$(newSelector, context))
+        })
+        return results
     }
 
     // if we queried for a single element by id
