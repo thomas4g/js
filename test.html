@@ -35,12 +35,18 @@
 
         <script src='html_protos.js'></script>
         <script src='js.js'></script>
+        <script src='ajax.js'></script>
         <script>
             console.log($$('#test'))
             console.log($$('a'))
 
             console.log($$('.top .whatever'))
             console.log($$('.top .whatever a'))
+
+            $$.ajax.get('http://localhost:8000/', function (req) {
+                console.log(req)
+                console.log(req.response)
+            })
         </script>
     </body>
 </html>
