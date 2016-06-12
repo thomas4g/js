@@ -36,8 +36,8 @@ function $$ (selector, context) {
     result = iterable ? result : [result]
     var newSelector = selectors.slice(1).join(' ')
     var results = []
-    result.map(function (context) {
-      results.concat($$(newSelector, context))
+    result.forEach(function (context) {
+      results = results.concat($$(newSelector, context))
     })
     return results
   }
