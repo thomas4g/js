@@ -12,37 +12,37 @@
 */
 
 function $$ (selector, context) {
-    context = context || document
+  context = context || document
 
-    var selectors = selector.split(' ', 1)
+  var selectors = selector.split(' ')
 
-    var selector = selectors[0]
-    var queryType = selector[0]
-    var query = selector.substr(1)
-    var result;
-    var iterable = false;
-    if (queryType === '#') {
-        result = context.getElementById(query)
-    } else if (queryType === '.') {
-        result = context.getElementsByClassName(query).toArray()
-        iterable = true;
-    } else {
-        result = context.getElementsByTagName(selector).toArray()
-        iterable = true;
-    }
-    if (result === null) return []
+  selector = selectors[0]
+  var queryType = selector[0]
+  var query = selector.substr(1)
+  var result
+  var iterable = false
+  if (queryType === '#') {
+    result = context.getElementById(query)
+  } else if (queryType === '.') {
+    result = context.getElementsByClassName(query).toArray()
+    iterable = true
+  } else {
+    result = context.getElementsByTagName(selector).toArray()
+    iterable = true
+  }
+  if (result === null) return []
 
-    if (selectors.length > 1) {
-        result = iterable ? result : [result]
-        var newSelector = selectors[1]
-        var results = []
-        result.map(function (context) {
-            results.concat($$(newSelector, context))
-        })
-        return results
-    }
+  if (selectors.length > 1) {
+    result = iterable ? result : [result]
+    var newSelector = selectors.slice(1).join(' ')
+    var results = []
+    result.map(function (context) {
+      results.concat($$(newSelector, context))
+    })
+    return results
+  }
 
-    // if we queried for a single element by id
-    if (result.length === 1 && queryType === '#') result = result[0]
-    return result
+  // if we queried for a single element by id
+  if (result.length === 1 && queryType === '#') result = result[0]
+  return result
 }
